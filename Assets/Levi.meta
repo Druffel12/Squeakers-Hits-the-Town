@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a6400bde606e46544ace388f4a6a9740
 folderAsset: yes
 timeCreated: 1532369822
+=======
+guid: 19ab9a5a5f15a654aae71657562d26f5
+folderAsset: yes
+timeCreated: 1532369711
+>>>>>>> levi
 licenseType: Free
 DefaultImporter:
   userData: 
