@@ -7,7 +7,8 @@ public class BuildingManager : MonoBehaviour
 {
     public PlayerStats player;
     public SlingshotManager sling;
-    //public GameObject destroyedBuilding;
+    public GameObject destroyedBuilding;
+    public DebrisManager debris;
     Vector3 startPos;
 
 	// Use this for initialization
@@ -24,6 +25,8 @@ public class BuildingManager : MonoBehaviour
         {
             Destroy(gameObject);
             //Instantiate(destroyedBuilding, startPos, Quaternion.identity);
+            destroyedBuilding.SetActive(true);
+            debris.StartCoroutine("ClearDebris");
             player.score += 10;
         }
     }

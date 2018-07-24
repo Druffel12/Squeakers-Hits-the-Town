@@ -41,11 +41,20 @@ public class SlingshotManager : MonoBehaviour
 
     void FireSqueaker()
     {
+        rb.isKinematic = false;
         shotFired = true;
         //ratPhysics.Ragdoll = true;
         rb.useGravity = true;
         rb.AddForce(transform.forward * firePower, ForceMode.Impulse);
         rb.AddForce(transform.up * (firePower * 0.5f), ForceMode.Impulse);
+    }
+
+    public void ResetSqueaker()
+    {
+        shotFired = false;
+        //ratPhysics.Ragdoll = false;
+        //rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     // Update is called once per frame

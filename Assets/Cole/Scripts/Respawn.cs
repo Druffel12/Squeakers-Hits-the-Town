@@ -5,25 +5,20 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     public Vector3 SqueakStart;
-    public RatPhysics RP;
+    public GameObject squeakStartPositionOnSling;
+    public SlingshotManager sling;
+
 	// Use this for initialization
 	void Start ()
     {
-        SqueakStart = gameObject.transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-        	
+        SqueakStart = squeakStartPositionOnSling.transform.position;
+        sling = FindObjectOfType<SlingshotManager>();
 	}
 
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Ground")
         {
-            RP.Ragdoll = false;
             StartCoroutine("RespawnTimer");
         }
     }
@@ -32,6 +27,7 @@ public class Respawn : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         gameObject.transform.position = SqueakStart;
+        sling.ResetSqueaker();
         yield return null;
     }
 }
