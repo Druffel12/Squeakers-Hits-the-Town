@@ -319,6 +319,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114299037469160194, guid: ffbcc4a4efa53094cbd16d45c7df6d16,
+        type: 2}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 2800000, guid: f25af44c7cc465f47acb9201f781a8bf, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffbcc4a4efa53094cbd16d45c7df6d16, type: 2}
   m_IsPrefabParent: 0
