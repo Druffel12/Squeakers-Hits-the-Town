@@ -7,6 +7,7 @@ public class SlingshotManager : MonoBehaviour
     [Header("Setup")]
     public MouseLook mouse;
     public Transform squeaker;
+    public RatPhysics ratPhysics;
     Rigidbody rb;
 
     [Header("Firing Stats")]
@@ -23,6 +24,7 @@ public class SlingshotManager : MonoBehaviour
     {
         mouse = GetComponent<MouseLook>();
         rb = GetComponentInChildren<Rigidbody>();
+        ratPhysics = FindObjectOfType<RatPhysics>();
         mouse.enabled = false;
         aiming = false;
         firePower = 0;
@@ -32,6 +34,7 @@ public class SlingshotManager : MonoBehaviour
 
     void FireSqueaker()
     {
+        
         rb.useGravity = true;
         rb.AddForce(transform.forward * firePower, ForceMode.Impulse);
         rb.AddForce(transform.up * (firePower * 0.5f), ForceMode.Impulse);
