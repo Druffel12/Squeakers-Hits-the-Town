@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlingshotManager : MonoBehaviour
 {
     [Header("Setup")]
     public MouseLook mouse;
     public Transform squeaker;
+    public RatPhysics ratPhysics;
+    public Slider powerBar;
     Rigidbody rb;
 
     [Header("Firing Stats")]
@@ -14,15 +17,21 @@ public class SlingshotManager : MonoBehaviour
     public int maxFirePower = 1000;
     public float firePower;
 
-    private bool aiming = false;
-    private bool firePositionSet;
-    private bool firePowerSet;
-    
+    [HideInInspector]
+    public bool aiming = false;
+    [HideInInspector]
+    public bool firePositionSet;
+    [HideInInspector]
+    public bool firePowerSet;
+    [HideInInspector]
+    public bool shotFired;
+
     // Use this for initialization
     void Start()
     {
         mouse = GetComponent<MouseLook>();
         rb = GetComponentInChildren<Rigidbody>();
+        ratPhysics = FindObjectOfType<RatPhysics>();
         mouse.enabled = false;
         aiming = false;
         firePower = 0;
@@ -32,6 +41,8 @@ public class SlingshotManager : MonoBehaviour
 
     void FireSqueaker()
     {
+        shotFired = true;
+        //ratPhysics.Ragdoll = true;
         rb.useGravity = true;
         rb.AddForce(transform.forward * firePower, ForceMode.Impulse);
         rb.AddForce(transform.up * (firePower * 0.5f), ForceMode.Impulse);
@@ -61,6 +72,7 @@ public class SlingshotManager : MonoBehaviour
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
             Debug.Log("Fire Power: " + firePower);
             firePowerSet = true;
+            powerBar.value--;
         }
         else if (firePositionSet == true && Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -68,6 +80,7 @@ public class SlingshotManager : MonoBehaviour
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
             Debug.Log("Fire Power: " + firePower);
             firePowerSet = true;
+            powerBar.value++;
         }
 
         if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.UpArrow))
@@ -76,6 +89,7 @@ public class SlingshotManager : MonoBehaviour
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
             Debug.Log("Fire Power: " + firePower);
             firePowerSet = true;
+            powerBar.value -= 9;
         }
         else if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -83,6 +97,7 @@ public class SlingshotManager : MonoBehaviour
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
             Debug.Log("Fire Power: " + firePower);
             firePowerSet = true;
+            powerBar.value += 9;
         }
 
         if (firePowerSet == true && Input.GetKeyDown(KeyCode.Mouse0))

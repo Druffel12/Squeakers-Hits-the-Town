@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RatPhysics : MonoBehaviour
 {
-    static bool Ragdoll;
+    public bool Ragdoll;
     Rigidbody[] RB;
 
 	void Start ()

@@ -15,6 +15,12 @@ public class PauseScript : MonoBehaviour
         pauseCanvas.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
+
+    public void OpenShop()
+    {
+        gameCanvas.gameObject.SetActive(false);
+        shopCanvas.gameObject.SetActive(true);
+    }
 	
     public void ResumeGame()
     {

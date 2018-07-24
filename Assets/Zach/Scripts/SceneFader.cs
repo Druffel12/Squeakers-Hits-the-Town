@@ -19,6 +19,7 @@ public class SceneFader : MonoBehaviour
     // Call this method as part of the play button (or whatever you're using to transition)
     public void FadeTo(string scene)
     {
+        Time.timeScale = 1f;
         StartCoroutine(FadeOut(scene));
     }
 
