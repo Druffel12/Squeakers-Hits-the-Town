@@ -8,20 +8,22 @@ public class UIManager : MonoBehaviour
     bool aiming = false;
     public Slider powerSlider;
     public Text tutorialText;
+    public Texture2D reticle;
+    CursorMode cursorMode = CursorMode.Auto;
+    Vector2 hotSpot = Vector2.zero;
 
 	public void Activate()
     {
         aiming = false;
         powerSlider.gameObject.SetActive(true);
-        //tutorialText.gameObject.SetActive(true);
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
     public void Deactivate()
     {
         aiming = true;
-
         powerSlider.gameObject.SetActive(false);
-        //tutorialText.gameObject.SetActive(false);
+        Cursor.SetCursor(reticle, hotSpot, cursorMode);
     }
 
 	void Update ()
