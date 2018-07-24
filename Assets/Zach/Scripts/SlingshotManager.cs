@@ -34,7 +34,7 @@ public class SlingshotManager : MonoBehaviour
 
     void FireSqueaker()
     {
-        
+        //ratPhysics.Ragdoll = true;
         rb.useGravity = true;
         rb.AddForce(transform.forward * firePower, ForceMode.Impulse);
         rb.AddForce(transform.up * (firePower * 0.5f), ForceMode.Impulse);
