@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     {
         aiming = false;
         powerSlider.gameObject.SetActive(true);
-        tutorialText.gameObject.SetActive(true);
+        //tutorialText.gameObject.SetActive(true);
     }
 
     public void Deactivate()
@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         aiming = true;
 
         powerSlider.gameObject.SetActive(false);
-        tutorialText.gameObject.SetActive(false);
+        //tutorialText.gameObject.SetActive(false);
     }
 
 	void Update ()
