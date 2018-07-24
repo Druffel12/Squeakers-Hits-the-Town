@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public void LoadLevel(string wool)
+    public SceneFader sceneFader;
+
+    public void LoadLevel()
     {
-        SceneManager.LoadScene(wool);
+        sceneFader.FadeTo("Zach's Scene");
     }
 
     public void QuitGame()
