@@ -10,7 +10,17 @@ public class RatPhysics : MonoBehaviour
 	void Start ()
     {
         Ragdoll = false;
-	}
+
+        GameObject[] BodyParts = GameObject.FindGameObjectsWithTag("Squeakers");
+        RB = new Rigidbody[BodyParts.Length];
+        for (int i = 0; i < RB.Length; i++)
+        {
+            RB[i] = BodyParts[i].GetComponent<Rigidbody>();
+
+
+        }
+    }
+
 	
 	void Update ()
     {
@@ -23,11 +33,9 @@ public class RatPhysics : MonoBehaviour
 
     void Fired()
     {
-        GameObject[] BodyParts = GameObject.FindGameObjectsWithTag("Rat");
-        RB = new Rigidbody[BodyParts.Length];
-        for (int i = 0; i < RB.Length; i++)
+        foreach(Rigidbody RatPart in RB)
         {
-            RB[i] = BodyParts[i].GetComponent<Rigidbody>();
+            RatPart.isKinematic = false;
         }
 
     }
