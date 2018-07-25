@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public SlingshotManager sling;
     public Text instructionalText;
     public GameObject gameCanvas, shopCanvas;
+    public PlayerStats player;
 
 	// Use this for initialization
 	void Start ()
     {
         sling = FindObjectOfType<SlingshotManager>();
+        player = FindObjectOfType<PlayerStats>();
         instructionalText.text = "Press Space to begin aiming";
 	}
 	
@@ -40,6 +42,11 @@ public class GameManager : MonoBehaviour
             sling.firePositionSet = false;
             sling.firePowerSet = false;
             instructionalText.enabled = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.score += 100;
         }
 	}
 }
