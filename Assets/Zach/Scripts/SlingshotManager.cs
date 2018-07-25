@@ -10,7 +10,9 @@ public class SlingshotManager : MonoBehaviour
     public Transform squeaker;
     public RatPhysics ratPhysics;
     public Slider powerBar;
-    Rigidbody rb;
+    public Rigidbody rb;
+    public GameObject squeakersObject;
+    public GameObject canonObject;
 
     [Header("Firing Stats")]
     public int minFirePower = 0;
@@ -30,7 +32,6 @@ public class SlingshotManager : MonoBehaviour
     void Start()
     {
         mouse = GetComponent<MouseLook>();
-        rb = GetComponentInChildren<Rigidbody>();
         ratPhysics = FindObjectOfType<RatPhysics>();
         mouse.enabled = false;
         aiming = false;
@@ -41,18 +42,20 @@ public class SlingshotManager : MonoBehaviour
 
     void FireSqueaker()
     {
+        squeakersObject.transform.parent = null;
         rb.isKinematic = false;
         shotFired = true;
-        //ratPhysics.Ragdoll = true;
+        ratPhysics.Ragdoll = true;
         rb.useGravity = true;
-        rb.AddForce(transform.forward * firePower, ForceMode.Impulse);
+        rb.AddForce(transform.forward * (firePower * 2), ForceMode.Impulse);
         rb.AddForce(transform.up * (firePower * 0.5f), ForceMode.Impulse);
     }
 
     public void ResetSqueaker()
     {
+        squeakersObject.transform.parent = canonObject.transform;
         shotFired = false;
-        //ratPhysics.Ragdoll = false;
+        ratPhysics.Ragdoll = false;
         //rb.useGravity = false;
         rb.isKinematic = true;
     }
@@ -75,7 +78,7 @@ public class SlingshotManager : MonoBehaviour
             }
         }
 
-        if (firePositionSet == true && Input.GetKeyDown(KeyCode.UpArrow))
+        if (firePositionSet == true && Input.GetKey(KeyCode.UpArrow))
         {
             firePower++;
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
@@ -83,7 +86,7 @@ public class SlingshotManager : MonoBehaviour
             firePowerSet = true;
             powerBar.value--;
         }
-        else if (firePositionSet == true && Input.GetKeyDown(KeyCode.DownArrow))
+        else if (firePositionSet == true && Input.GetKey(KeyCode.DownArrow))
         {
             firePower--;
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
@@ -92,7 +95,7 @@ public class SlingshotManager : MonoBehaviour
             powerBar.value++;
         }
 
-        if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.UpArrow))
+        if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.UpArrow))
         {
             firePower += 9;
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
@@ -100,7 +103,7 @@ public class SlingshotManager : MonoBehaviour
             firePowerSet = true;
             powerBar.value -= 9;
         }
-        else if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.DownArrow))
+        else if (firePositionSet == true && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.DownArrow))
         {
             firePower -= 9;
             firePower = Mathf.Clamp(firePower, minFirePower, maxFirePower);
@@ -109,7 +112,7 @@ public class SlingshotManager : MonoBehaviour
             powerBar.value += 9;
         }
 
-        if (firePowerSet == true && Input.GetKeyDown(KeyCode.Mouse0))
+        if (firePowerSet == true && Input.GetKeyDown(KeyCode.Return))
         {
             FireSqueaker(); // Replace this with Cole's squeaker fire function
         }

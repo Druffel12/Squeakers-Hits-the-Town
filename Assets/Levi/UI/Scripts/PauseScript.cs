@@ -13,7 +13,7 @@ public class PauseScript : MonoBehaviour
     {
         gameCanvas.gameObject.SetActive(false);
         pauseCanvas.gameObject.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     public void OpenShop()
@@ -35,10 +35,14 @@ public class PauseScript : MonoBehaviour
         {
             if(Time.timeScale == 0 && shopCanvas.gameObject.activeInHierarchy == false)
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 ResumeGame();
             }
             else if (Time.timeScale == 1)
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 PauseGame();
             }
         }

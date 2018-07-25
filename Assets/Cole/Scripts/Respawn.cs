@@ -15,7 +15,7 @@ public class Respawn : MonoBehaviour
         sling = FindObjectOfType<SlingshotManager>();
 	}
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Ground")
         {
