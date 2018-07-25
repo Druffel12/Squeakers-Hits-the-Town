@@ -112,7 +112,7 @@ public class SlingshotManager : MonoBehaviour
             powerBar.value += 9;
         }
 
-        if (firePowerSet == true && Input.GetKeyDown(KeyCode.Return))
+        if (firePowerSet == true && Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireSqueaker(); // Replace this with Cole's squeaker fire function
         }

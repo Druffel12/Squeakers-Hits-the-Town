@@ -33,20 +33,20 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        speedH = 5f;
-        speedV = 5f;
+        speedH = 2.5f;
+        speedV = 2.5f;
     }
 
     void Update()
     {
         yaw += Input.GetAxis("Mouse X") * speedH;
-        pitch += Input.GetAxis("Mouse Y") * speedV;
+        pitch -= Input.GetAxis("Mouse Y") * speedV;
 
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         yaw = Mathf.Clamp(yaw, minYaw, maxYaw);
 
         transform.eulerAngles = new Vector3(pitch /*0*/, yaw, 0);
-        UpdateCursorLock();
+        //UpdateCursorLock();
     }
 
     public void SetCursorLock(bool value)
@@ -59,32 +59,32 @@ public class MouseLook : MonoBehaviour
         }
     }
 
-    public void UpdateCursorLock()
-    {
-        if (lockCursor)
-            InternalLockUpdate();
-    }
+    //public void UpdateCursorLock()
+    //{
+    //    if (lockCursor)
+    //        InternalLockUpdate();
+    //}
 
-    private void InternalLockUpdate()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            m_cursorIsLocked = false;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_cursorIsLocked = true;
-        }
+    //private void InternalLockUpdate()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Escape))
+    //    {
+    //        m_cursorIsLocked = false;
+    //    }
+    //    else if (Input.GetMouseButtonUp(0))
+    //    {
+    //        m_cursorIsLocked = true;
+    //    }
 
-        if (m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else if (!m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-    }
+    //    if (m_cursorIsLocked)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //        Cursor.visible = false;
+    //    }
+    //    else if (!m_cursorIsLocked)
+    //    {
+    //        Cursor.lockState = CursorLockMode.None;
+    //        Cursor.visible = true;
+    //    }
+    //}
 }

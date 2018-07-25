@@ -11,7 +11,7 @@ public class ShopScript : MonoBehaviour
 
     public Text text;
 
-    public GameObject gameCanvas, shopCanvas;
+    public GameObject gameCanvas, shopCanvas, angelHat, armyHat, partyHat;
 
     Color textColor = new Color(1f, 0f, 0f);
 
@@ -23,11 +23,44 @@ public class ShopScript : MonoBehaviour
         startFade = false;
     }
 
-    public void Buy(int price)
+    public void BuyOne(int price)
     {
         if (player.score >= price)
         {
             player.score -= price;
+            angelHat.SetActive(true);
+            armyHat.SetActive(false);
+            partyHat.SetActive(false);
+        }
+        else
+        {
+            text.color = textColor;
+            startFade = true;
+        }
+    }
+    public void BuyTwo(int price)
+    {
+        if (player.score >= price)
+        {
+            player.score -= price;
+            armyHat.SetActive(true);
+            angelHat.SetActive(false);
+            partyHat.SetActive(false);
+        }
+        else
+        {
+            text.color = textColor;
+            startFade = true;
+        }
+    }
+    public void BuyThree(int price)
+    {
+        if (player.score >= price)
+        {
+            player.score -= price;
+            partyHat.SetActive(true);
+            angelHat.SetActive(false);
+            armyHat.SetActive(false);
         }
         else
         {

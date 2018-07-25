@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public Vector3 SqueakStart;
+    public GameObject SqueakStart;
     public GameObject squeakStartPositionOnSling;
     public SlingshotManager sling;
 
 	// Use this for initialization
 	void Start ()
     {
-        SqueakStart = squeakStartPositionOnSling.transform.position;
+        SqueakStart.transform.position = squeakStartPositionOnSling.transform.position;
         sling = FindObjectOfType<SlingshotManager>();
 	}
 
@@ -26,7 +26,8 @@ public class Respawn : MonoBehaviour
     IEnumerator RespawnTimer()
     {
         yield return new WaitForSeconds(2.0f);
-        gameObject.transform.position = SqueakStart;
+        gameObject.transform.position = SqueakStart.transform.position;
+        gameObject.transform.rotation = SqueakStart.transform.rotation;
         sling.ResetSqueaker();
         yield return null;
     }

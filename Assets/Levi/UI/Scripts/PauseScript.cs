@@ -35,14 +35,14 @@ public class PauseScript : MonoBehaviour
         {
             if(Time.timeScale == 0 && shopCanvas.gameObject.activeInHierarchy == false)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
                 ResumeGame();
             }
             else if (Time.timeScale == 1)
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
                 PauseGame();
             }
         }
