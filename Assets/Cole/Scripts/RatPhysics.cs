@@ -31,7 +31,7 @@ public class RatPhysics : MonoBehaviour
         }
     }
 
-    void Fired()
+    public void Fired()
     {
         foreach(Rigidbody RatPart in RB)
         {

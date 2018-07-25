@@ -8,9 +8,12 @@ public class PauseScript : MonoBehaviour
     public Canvas pauseCanvas;
     public Canvas shopCanvas;
     public AudioSource elevatorMusic, gameMusic;
+    public SlingshotManager sling;
 
     public void PauseGame()
     {
+        sling.firePositionSet = false;
+        sling.firePowerSet = false;
         gameMusic.Pause();
         elevatorMusic.Play();
         gameCanvas.gameObject.SetActive(false);

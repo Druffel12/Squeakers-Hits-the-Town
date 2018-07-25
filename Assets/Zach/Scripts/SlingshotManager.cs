@@ -48,6 +48,13 @@ public class SlingshotManager : MonoBehaviour
         firePower = 0;
         firePositionSet = false;
         firePowerSet = false;
+
+        ratPhysics.Ragdoll = true;
+        ratPhysics.Fired();
+
+
+        //FireSqueaker();
+        //ResetSqueaker();
     }
 
     void FireSqueaker()
@@ -99,6 +106,12 @@ public class SlingshotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            FireSqueaker();
+            ResetSqueaker();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (aiming == false)

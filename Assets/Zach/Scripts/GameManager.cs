@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         {
             sling.aiming = false;
             sling.firePositionSet = false;
-            sling.firePowerSet = false;
+            //sling.firePowerSet = false;
             instructionalText.enabled = false;
         }
 
